@@ -32,8 +32,8 @@ class ProxyHandler
         // Set various options
         $this->setCurlOption(CURLOPT_RETURNTRANSFER, true);
         $this->setCurlOption(CURLOPT_BINARYTRANSFER, true); // For images, etc.
-        $this->setCurlOption(CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
-        $this->setCurlOption(CURLOPT_WRITEFUNCTION, array(
+		if(isset($_SERVER['HTTP_USER_AGENT'])){	$this->setCurlOption(CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);}
+		$this->setCurlOption(CURLOPT_WRITEFUNCTION, array(
             $this,
             'readResponse'
         ));
