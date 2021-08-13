@@ -4,10 +4,8 @@
  */
 //Available Servers
 $servers = array(
-				'http://localhost:9091/',
-				'http://localhost:9092/',
-				'http://localhost:9093/',
-				'http://localhost:9094/'
+				"http://localhost:9091/",
+				"http://localhost:9092/",
 				);
 $proxyTo = $servers[array_rand($servers)];
 //exit("Proxxied to: $proxyTo");
@@ -59,6 +57,10 @@ function getRequestHeaders($multipart_delimiter=NULL) {
             }
         }
     }
+	//Append Header IP
+	$remoteAddress = $_SERVER["REMOTE_ADDR"];
+	array_push($headers, "remoteAddress: $remoteAddress");
+	
     return $headers;
 }
 
@@ -144,5 +146,4 @@ foreach ( $headers_arr as $header ) {
 }
 
 print $contents; # return the proxied request result to the browser
-
 ?>
